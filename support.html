@@ -4,54 +4,206 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CourtMatch 支援中心</title>
+<meta name="description" content="CourtMatch 支援中心 —— 聯絡我們、常見問題與 App 功能說明。屬於每一個人的網球社群。">
 <style>
-  :root { color-scheme: light; }
-  body { font-family: -apple-system, "PingFang TC", "Helvetica Neue", sans-serif;
-         line-height: 1.7; color: #1c1c1e; max-width: 720px;
-         margin: 0 auto; padding: 40px 20px; }
-  h1 { font-size: 1.7rem; }
-  h2 { font-size: 1.15rem; margin-top: 2rem; }
-  .sub { color: #8e8e93; font-size: .95rem; }
-  .card { background: #f2f7f4; border: 1px solid #d9ede2; border-radius: 12px;
-          padding: 16px 20px; margin: 12px 0; }
-  a { color: #12a06b; font-weight: 600; }
-  .faq q { display: block; font-weight: 600; margin-top: 1.1rem; }
-  .brand { color: #12a06b; font-weight: 700; letter-spacing: .5px; }
+  :root{
+    color-scheme: light;
+    --grad-top:#33c56e; --grad-bottom:#0e9a5b; --green:#12a06b; --green-ink:#0b7d4f;
+    --mint-bg:#f3f8f5; --mint-card:#eaf6ef; --mint-border:#d7ebe0;
+    --ink:#1b2620; --ink-2:#51605a; --ink-3:#8a988f; --line:#e7f0ea;
+    --seam:#e4f56b; --white:#fff; --radius:18px;
+    --font: -apple-system, BlinkMacSystemFont, "PingFang TC", "Helvetica Neue", "Microsoft JhengHei", sans-serif;
+    --font-display: "SF Pro Display", var(--font);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--mint-bg);line-height:1.7;
+       -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:var(--green-ink);text-decoration:none;font-weight:600}
+  a:hover{text-decoration:underline}
+  :focus-visible{outline:3px solid #0e9a5b;outline-offset:3px;border-radius:6px}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;background:linear-gradient(160deg,var(--grad-top),var(--grad-bottom));
+        color:#fff;padding:56px 22px 92px;border-radius:0 0 34px 34px;overflow:hidden;isolation:isolate}
+  .hero__court{position:absolute;inset:0;z-index:-1;opacity:.12;pointer-events:none}
+  .hero__inner{max-width:720px;margin:0 auto}
+  .brandline{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .ball{width:38px;height:38px;flex:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.18))}
+  .wordmark{font-family:var(--font-display);font-weight:800;font-size:clamp(2rem,7vw,2.7rem);
+            letter-spacing:-.03em;line-height:1;margin:0}
+  .chip{display:inline-block;font-size:.82rem;font-weight:700;letter-spacing:.06em;
+        background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);
+        padding:5px 12px;border-radius:999px;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+  .tagline{font-family:var(--font-display);font-weight:600;font-size:clamp(1.15rem,4.4vw,1.55rem);
+           letter-spacing:.01em;margin:20px 0 6px}
+  .subtag{font-size:1rem;color:rgba(255,255,255,.9);margin:0;font-weight:500}
+  .lead{max-width:560px;margin:16px 0 0;color:rgba(255,255,255,.94);font-size:1rem}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:720px;margin:0 auto;padding:0 22px 8px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+        padding:26px 24px;box-shadow:0 10px 30px -18px rgba(14,120,70,.35);margin:22px 0}
+  .card--lift{margin-top:-52px}   /* overlaps hero bottom */
+  section{scroll-margin-top:16px}
+  .eyebrow{display:flex;align-items:center;gap:9px;font-size:.78rem;font-weight:800;
+           letter-spacing:.13em;text-transform:uppercase;color:var(--green);margin:0 0 4px}
+  .seam{display:block;width:44px;height:8px;margin:2px 0 18px}
+  h2.title{font-size:1.35rem;font-weight:800;margin:.1rem 0 0;letter-spacing:-.01em}
+
+  /* ---------- CONTACT ---------- */
+  .contact p{margin:.5rem 0 1.2rem;color:var(--ink-2)}
+  .mailbtn{display:flex;align-items:center;gap:14px;background:var(--mint-card);
+           border:1px solid var(--mint-border);border-radius:14px;padding:15px 18px;
+           font-weight:700;color:var(--green-ink);transition:transform .18s ease,box-shadow .18s ease}
+  .mailbtn:hover{transform:translateY(-2px);box-shadow:0 12px 24px -14px rgba(14,120,70,.5);text-decoration:none}
+  .mailbtn .ic{width:40px;height:40px;flex:none;display:grid;place-items:center;font-size:1.2rem;
+               background:#fff;border-radius:11px;box-shadow:0 3px 8px -4px rgba(0,0,0,.2)}
+  .mailbtn .addr{display:flex;flex-direction:column;line-height:1.3;min-width:0}
+  .mailbtn .addr small{font-weight:600;color:var(--ink-3);font-size:.78rem;letter-spacing:.02em}
+  .mailbtn .addr span{font-size:1.02rem;word-break:break-all}
+  .note{font-size:.86rem;color:var(--ink-3);margin:1rem 0 0}
+
+  /* ---------- FEATURES ---------- */
+  .feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:20px}
+  .feat{background:var(--mint-card);border:1px solid var(--mint-border);border-radius:14px;padding:14px 15px}
+  .feat .fi{font-size:1.4rem;line-height:1}
+  .feat h3{font-size:1rem;font-weight:800;margin:.5rem 0 .25rem}
+  .feat p{font-size:.9rem;color:var(--ink-2);margin:0;line-height:1.55}
+
+  /* ---------- FAQ ---------- */
+  .faq{margin-top:18px;border-top:1px solid var(--line)}
+  details{border-bottom:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;padding:17px 40px 17px 4px;position:relative;
+          font-weight:700;font-size:1.03rem;color:var(--ink)}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";position:absolute;right:8px;top:50%;width:9px;height:9px;
+                 border-right:2.4px solid var(--green);border-bottom:2.4px solid var(--green);
+                 transform:translateY(-70%) rotate(45deg);transition:transform .22s ease}
+  details[open] summary::after{transform:translateY(-30%) rotate(225deg)}
+  details .body{padding:0 4px 18px;color:var(--ink-2);font-size:.97rem}
+  details .body a{white-space:nowrap}
+
+  /* ---------- FOOTER ---------- */
+  footer{max-width:720px;margin:8px auto 0;padding:30px 22px 46px;text-align:center;color:var(--ink-3)}
+  .footlinks{display:flex;gap:8px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+  .footlinks .dot{color:var(--mint-border)}
+  .closing{font-family:var(--font-display);font-weight:500;color:var(--green-ink);
+           font-size:1rem;margin:0 0 6px}
+  .closing .zh{display:block;font-family:var(--font);color:var(--ink-3);font-size:.9rem;margin-top:3px}
+  .copyright{font-size:.82rem;margin:14px 0 0}
+
+  @media (max-width:480px){
+    .hero{padding:44px 18px 84px}
+    main{padding:0 16px}
+    .card{padding:22px 18px}
+    footer{padding:26px 16px 40px}
+  }
+  .anim{opacity:0;transform:translateY(14px);animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .d1{animation-delay:.05s}.d2{animation-delay:.14s}.d3{animation-delay:.22s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none!important;scroll-behavior:auto!important}
+    .anim{opacity:1;transform:none;animation:none}
+  }
 </style>
 </head>
 <body>
-<h1>CourtMatch 支援中心</h1>
-<p class="sub">Play. Connect. Belong.　屬於每一個人的網球社群</p>
 
-<p>CourtMatch 是一款業餘網球約球與賽事社交 App —— 依 NTRP 實力配對球友、發起或加入球局與賽事、賽後互評累積信用。</p>
+<header class="hero">
+  <svg class="hero__court" viewBox="0 0 720 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#fff" stroke-width="2">
+      <rect x="70" y="24" width="580" height="300" rx="2"/>
+      <line x1="70" y1="174" x2="650" y2="174"/>
+      <rect x="150" y="84" width="420" height="180"/>
+      <line x1="360" y1="84" x2="360" y2="264"/>
+      <line x1="360" y1="24" x2="360" y2="84"/>
+      <line x1="360" y1="264" x2="360" y2="324"/>
+    </g>
+  </svg>
+  <div class="hero__inner anim">
+    <div class="brandline">
+      <svg class="ball" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" fill="#dff35f"/>
+        <path d="M6 14c9 5 9 15 0 20M42 14c-9 5-9 15 0 20" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <h1 class="wordmark">CourtMatch</h1>
+      <span class="chip">支援中心</span>
+    </div>
+    <p class="tagline">Play. Connect. Belong.</p>
+    <p class="subtag">屬於每一個人的網球社群</p>
+    <p class="lead">CourtMatch 是一款業餘網球約球與賽事社交 App —— 依 NTRP 實力配對球友、發起或加入球局與賽事、賽後互評累積信用。有任何問題,我們都在這裡。</p>
+  </div>
+</header>
 
-<div class="card">
-  <strong>📧 聯絡我們</strong><br>
-  有任何問題、建議或帳號相關需求，歡迎來信，我們會在 <strong>1–2 個工作天內</strong>回覆：<br>
-  <a href="mailto:xuelong0208@gmail.com">xuelong0208@gmail.com</a>
-</div>
+<main>
+  <section class="card card--lift contact anim d1" aria-labelledby="contact-h">
+    <p class="eyebrow">📧 聯絡我們</p>
+    <svg class="seam" viewBox="0 0 44 8" aria-hidden="true"><path d="M2 6C12 1 32 1 42 6" fill="none" stroke="#12a06b" stroke-width="3" stroke-linecap="round"/></svg>
+    <h2 class="title" id="contact-h">有問題?寫封信給我們</h2>
+    <p>問題、建議或帳號相關需求,歡迎來信,我們會在 <strong>1–2 個工作天內</strong>回覆。</p>
+    <a class="mailbtn" href="mailto:xuelong0208@gmail.com">
+      <span class="ic" aria-hidden="true">✉️</span>
+      <span class="addr"><small>電子郵件</small><span>xuelong0208@gmail.com</span></span>
+    </a>
+    <p class="note">來信時請附上你的登入方式(Apple／手機／Email),有助我們更快協助你。</p>
+  </section>
 
-<h2>常見問題</h2>
-<div class="faq">
-  <q>如何登入？</q>
-  支援「使用 Apple 登入」與手機號碼／電子郵件驗證碼登入，依畫面指示即可。
+  <section class="card anim" aria-labelledby="feat-h">
+    <p class="eyebrow">🎾 CourtMatch 能做什麼</p>
+    <svg class="seam" viewBox="0 0 44 8" aria-hidden="true"><path d="M2 6C12 1 32 1 42 6" fill="none" stroke="#12a06b" stroke-width="3" stroke-linecap="round"/></svg>
+    <h2 class="title" id="feat-h">一個 App,搞定約球到辦賽</h2>
+    <div class="feat-grid">
+      <div class="feat"><div class="fi">🎾</div><h3>依實力配對</h3><p>依 NTRP 分級、時間與地區,配對程度相近的球友。</p></div>
+      <div class="feat"><div class="fi">📅</div><h3>一鍵約球</h3><p>幾秒建立球局,或直接加入別人發起的球局。</p></div>
+      <div class="feat"><div class="fi">🏆</div><h3>一站式辦賽事</h3><p>抽籤、對陣圖、比分、晉級,系統全程自動。</p></div>
+      <div class="feat"><div class="fi">👨‍👩‍👧‍👦</div><h3>適齡社群</h3><p>青少年與成年用戶分開配對,家長更安心。</p></div>
+      <div class="feat"><div class="fi">💬</div><h3>即時聊天</h3><p>私聊與球局群聊,集合、球費一次談妥。</p></div>
+      <div class="feat"><div class="fi">⭐</div><h3>信用評價</h3><p>賽後雙方互評,累積你的球場信用。</p></div>
+      <div class="feat"><div class="fi">🌦</div><h3>天氣提醒</h3><p>即時球場天氣,提前掌握降雨,不再白跑。</p></div>
+    </div>
+  </section>
 
-  <q>如何找球友、發起約球？</q>
-  在首頁瀏覽附近球局，一鍵報名；或點「發起約球」設定時間、球場、人數與實力範圍即可發布。
+  <section class="card anim" aria-labelledby="faq-h">
+    <p class="eyebrow">💡 常見問題</p>
+    <svg class="seam" viewBox="0 0 44 8" aria-hidden="true"><path d="M2 6C12 1 32 1 42 6" fill="none" stroke="#12a06b" stroke-width="3" stroke-linecap="round"/></svg>
+    <h2 class="title" id="faq-h">常見問題</h2>
+    <div class="faq">
+      <details open>
+        <summary>如何登入?</summary>
+        <div class="body">支援「使用 Apple 登入」與手機號碼／電子郵件驗證碼登入,依畫面指示即可完成。</div>
+      </details>
+      <details>
+        <summary>如何找球友、發起約球?</summary>
+        <div class="body">在首頁瀏覽附近球局,一鍵報名;或點畫面中央的「＋」設定時間、球場、單雙打、人數與實力範圍,即可發布你的球局。</div>
+      </details>
+      <details>
+        <summary>賽事怎麼參加?</summary>
+        <div class="body">在賽事頁報名,組織者抽籤後即可在對陣圖看到你的對手;每場結束由獲勝一方於 App 內錄入比分,系統自動晉級。</div>
+      </details>
+      <details>
+        <summary>如何刪除帳號?</summary>
+        <div class="body">於 App 內「設定 → 刪除帳號」即可永久刪除帳號與相關資料,操作不可復原。</div>
+      </details>
+      <details>
+        <summary>忘記或遇到登入問題?</summary>
+        <div class="body">請來信 <a href="mailto:xuelong0208@gmail.com">xuelong0208@gmail.com</a>,附上你的登入方式(Apple／手機／Email),我們會協助處理。</div>
+      </details>
+    </div>
+  </section>
+</main>
 
-  <q>賽事怎麼參加？</q>
-  在賽事頁報名，組織者抽籤後即可在對陣圖看到你的對手；每場結束由獲勝一方於 App 內錄入比分，系統自動晉級。
+<footer>
+  <div class="footlinks">
+    <a href="./">隱私權政策</a>
+    <span class="dot">·</span>
+    <a href="mailto:xuelong0208@gmail.com">聯絡我們</a>
+  </div>
+  <p class="closing">Every great match begins with a connection.
+    <span class="zh">每一場精彩的比賽,都始於一次相遇。</span>
+  </p>
+  <p class="copyright">© 2026 CourtMatch</p>
+</footer>
 
-  <q>如何刪除帳號？</q>
-  App 內「設定 → 刪除帳號」即可永久刪除帳號與相關資料，操作不可復原。
-
-  <q>忘記或遇到登入問題？</q>
-  請來信 <a href="mailto:xuelong0208@gmail.com">xuelong0208@gmail.com</a>，附上你的登入方式（Apple／手機／Email），我們會協助處理。
-</div>
-
-<h2>隱私權政策</h2>
-<p>我們如何處理你的資料，請見 <a href="./">隱私權政策</a>。</p>
-
-<p class="sub" style="margin-top:2.5rem">© 2026 CourtMatch</p>
 </body>
 </html>
