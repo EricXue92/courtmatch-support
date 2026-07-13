@@ -113,12 +113,15 @@
 <header class="hero">
   <svg class="hero__court" viewBox="0 0 720 340" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <g fill="none" stroke="#fff" stroke-width="2">
-      <rect x="70" y="24" width="580" height="300" rx="2"/>
-      <line x1="70" y1="174" x2="650" y2="174"/>
-      <rect x="150" y="84" width="420" height="180"/>
-      <line x1="360" y1="84" x2="360" y2="264"/>
-      <line x1="360" y1="24" x2="360" y2="84"/>
-      <line x1="360" y1="264" x2="360" y2="324"/>
+      <rect x="40" y="35" width="640" height="270" rx="2"/> <!-- 雙打外框(邊線+底線) -->
+      <line x1="360" y1="35" x2="360" y2="305"/>            <!-- 網(中央) -->
+      <line x1="40" y1="69" x2="680" y2="69"/>              <!-- 上單打邊線 -->
+      <line x1="40" y1="271" x2="680" y2="271"/>            <!-- 下單打邊線 -->
+      <line x1="188" y1="69" x2="188" y2="271"/>            <!-- 左發球線 -->
+      <line x1="532" y1="69" x2="532" y2="271"/>            <!-- 右發球線 -->
+      <line x1="188" y1="170" x2="532" y2="170"/>          <!-- 中線(僅發球區內) -->
+      <line x1="40" y1="170" x2="54" y2="170"/>            <!-- 左底線中點刻度 -->
+      <line x1="666" y1="170" x2="680" y2="170"/>          <!-- 右底線中點刻度 -->
     </g>
   </svg>
   <div class="hero__inner anim">
